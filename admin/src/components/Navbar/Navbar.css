@@ -1,0 +1,38 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;   /* pushes profile pic to end */
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+.profile{
+    width: 50px; /* change size here */
+    height: 50px;
+    border-radius: 50%; /* perfect circle */
+    object-fit: cover; /* fit image properly */
+    border: 2px solid #ff4444; /* optional nice border */
+    cursor: pointer;
+    justify-content: space-between;
+
+}
+
+.logo{
+    width: 50px; /* change size here */
+    height: 50px;
+    object-fit: cover; /* fit image properly */
+    border: 2px solid #ff4444; /* optional nice border */
+    cursor: pointer;
+    
+}
+.io{
+    display: flex;
+    justify-content: space-evenly;
+}
+.navbar .io{
+    padding: 10px;
+}
+.io h1{
+    margin-left: 10px;
+    margin-top: 10px;
+   
+}
