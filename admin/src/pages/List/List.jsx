@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 export default function List(){
     const [list,setList]=useState([]);
+    const [remove,setRemove]=useState("");
 
     const fetchList= async () =>{
         const response=await axios.get("http://localhost:4000/api/food/list");
@@ -39,9 +40,9 @@ export default function List(){
                         <div key={index} className="list-table-format">
                                 <img src={"http://localhost:4000/images/"+item.image}/>
                                 <p>{item.name}</p>
-                                <p>{item.category}</p>
-                                <p>${item.price}</p>
-                                <p>X</p>
+                                <p className="category">{item.category}</p>
+                                <p className="price">${item.price}</p>
+                                <p className="X">X</p>
                         </div>
                     );
                 })}
