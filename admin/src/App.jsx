@@ -4,9 +4,12 @@ import {Routes,Route} from 'react-router-dom';
 import List from "./pages/List/List";
 import Add from "./pages/ADD/Add";
 import Orders from "./pages/Orders/Orders";
+import { ToastContainer } from 'react-toastify';
+
 export default function App(){
   return(
    <div>
+    <ToastContainer/>
     <Navbar/>
     <hr></hr>
    <div className="app-content">
