@@ -16,13 +16,22 @@ export default function List(){
             alert("Something went wrong in Database");
             toast.error("Error,something went wrong...."); 
         }
+    }
+    const removefood= async (foodid)=>{
+        const response = await axios.post("http://localhost:4000/api/food/remove",{id:foodid});
+        await fetchList();
+        toast.error("Yes Deleted Successfully");
+
 
 
     }
 
+ 
+
     useEffect(()=>{
         fetchList();
     },[]);
+
     return(
         <div className="list add flex-col">
             <p>All Foods List</p>
@@ -42,7 +51,7 @@ export default function List(){
                                 <p>{item.name}</p>
                                 <p className="category">{item.category}</p>
                                 <p className="price">${item.price}</p>
-                                <p className="X">X</p>
+                                <p  onClick={()=>removefood(item._id)}   className="X">X</p>
                         </div>
                     );
                 })}
