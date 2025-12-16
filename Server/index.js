@@ -3,7 +3,8 @@ import cors from "cors"
 import { connectDb } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import { listFood } from "./Controlers/foodcontroler.js";
-
+import userRouter from "./routes/userRoute.js";
+import "dotenv/config"
 
 //App Config
 const app=express();
@@ -20,10 +21,7 @@ connectDb();
 //API endpoints
 app.use("/api/food",foodRouter); //Bringing the food router which contain express....
 app.use("/images",express.static("uploads")); //Mounted this upload folder at this endpoints...
-
-
-
-
+app.use("/api/user",userRouter);
 
 app.listen(port,()=>{
      console.log(`Server started at ${port}`);
