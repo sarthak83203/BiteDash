@@ -6,6 +6,53 @@ import validator from "validator"
 
 //login user
  export const loginUser=async (req,res)=>{
+    const {password,email}=req.body;
+    try{
+        const user=await usermodel.findOne({email});
+        if(!user){
+            return res.json({
+                success:false,
+                message:"Not a user",
+            })
+        }
+
+        //No use of validating.Just check na.......
+        // if(!validator.isEmail(email)){
+        //     return res.json({
+        //         success:false,
+        //         message:"Email is Invalid"
+        //     })
+        // }
+
+       //if matching then true or false
+        const isMatch=await bcrypt.compare(password,user.password);
+       if(!isMatch){
+        return res.json({
+            success:false,
+            message:"Password is incorrect,Enter again"
+        })
+       }
+
+       //if password is matching then we will generate one token...
+
+       const token=createtoken(user._id);
+       res.json({
+        success:true,
+        token,
+        message:"Login successfully",
+       })
+
+
+
+    }catch(error){
+        res.json({
+            success:false,
+            message:error.message,
+
+        })
+
+    }
+
 
     
     
