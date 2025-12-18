@@ -4,6 +4,9 @@ import {useState} from "react";
 export const StoreContext=createContext(null);
 const StoreContextProvider=(props)=>{
     const [cartItem,setCartItem]=useState({});
+    const [token,setToken]=useState("");
+
+    const url="http://localhost:4000";
 
     function addcart(itemid){ //If the user Add one item in card then this statment is executed..
         if(!cartItem[itemid]){ //this is create new entry to our product..
@@ -40,6 +43,9 @@ const getTotalCartAmount=()=>{
         addcart,
         removeitemid,
         getTotalCartAmount,
+        url,
+        token,
+        setToken,
         
 
     }
