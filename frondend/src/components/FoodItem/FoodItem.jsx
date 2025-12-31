@@ -7,11 +7,11 @@ import {useContext} from "react";
 
 export default function FoodItem({id,name,price,description,image}){
     
-    const {cartItem,addcart,removeitemid}=useContext(StoreContext); //So if can get access of this files.....
+    const {cartItem,addcart,removeitemid,url}=useContext(StoreContext); //So if can get access of this files.....
     return(
      <div className="food-item">
         <div className="food-item-img-container">
-            <img  className="food-item-image" src={image}/>
+            <img  className="food-item-image" src={url+"/images/"+image}/>
             { //This Part is Best as it can use as adding and removing......
             //This Logic is Great By the Way.....
                 !cartItem[id]

@@ -1,12 +1,17 @@
 import { createContext, useEffect } from "react";
-import { food_list } from "../assets/assets";
+import axios from "axios";
 import {useState} from "react";
 export const StoreContext=createContext(null);
 const StoreContextProvider=(props)=>{
     const [cartItem,setCartItem]=useState({});
     const [token,setToken]=useState("");
+    const [food_list,setFoodList]=useState([]);
 
     const url="http://localhost:4000";
+    const fetchFoodList=async ()=>{
+        const response=await axios.get(url+"/api/food/list");
+        setFoodList(response.data.data);
+    }
 
     function addcart(itemid){ //If the user Add one item in card then this statment is executed..
         if(!cartItem[itemid]){ //this is create new entry to our product..
@@ -24,7 +29,7 @@ const StoreContextProvider=(props)=>{
  //When the cart item get updated it will print
 const getTotalCartAmount=()=>{
     let totalAmount=0;
-    for(let item in food_list){
+    for(let item in cartItem){
         if(cartItem[item]>0){ //if Quantity is &gt than 0
             let itemInfo=food_list.find((product)=>product._id===item);
         totalAmount+=itemInfo.price * cartItem[item];     
@@ -34,6 +39,20 @@ const getTotalCartAmount=()=>{
     }
     return totalAmount;
 }
+//When it renders for first time then user remains same the logic 
+
+useEffect(()=>{
+   
+    async function loaddata(){
+        await fetchFoodList();
+         if(localStorage.getItem("token")){
+        setToken(localStorage.getItem("token"));
+    }
+    }
+    
+    loaddata();
+
+},[])
 
   //Context API allows you to use all this components in  other Files....
     const contextValue={
