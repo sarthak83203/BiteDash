@@ -1,4 +1,4 @@
-🍔 BiteDash – Full-Stack Food Delivery App (MERN)
+#🍔 BiteDash – Full-Stack Food Delivery App (MERN)
 
 BiteDash is a full-stack food delivery web application built using the MERN stack. It allows users to browse restaurants, order food, and manage orders through a clean, responsive, and mobile-friendly interface.
 
