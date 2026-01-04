@@ -1,87 +1,100 @@
-#🍔 BiteDash – Full-Stack Food Delivery App (MERN)
+# 🍔 BiteDash – Full-Stack Food Delivery App (MERN)
 
-BiteDash is a full-stack food delivery web application built using the MERN stack. It allows users to browse restaurants, order food, and manage orders through a clean, responsive, and mobile-friendly interface.
+BiteDash is a **full-stack food delivery web application** built using the **MERN stack**. It enables users to browse restaurants, order food, and manage orders through a **clean, responsive, and mobile-friendly interface**.
 
-🚀 Features
+---
 
-🔐 User Authentication (Login / Signup)
+## 🚀 Features
 
-🏪 Restaurant & Food Item Browsing
+- 🔐 User Authentication (Login / Signup)
+- 🏪 Browse Restaurants & Food Items
+- 🛒 Add to Cart & Place Orders
+- 📦 Order Management System
+- 🌐 RESTful API Architecture
+- 📱 Fully Responsive UI (Mobile & Desktop)
 
-🛒 Add to Cart & Place Orders
+---
 
-📦 Order Management
+## 🛠️ Tech Stack
 
-🌐 RESTful APIs for backend operations
+### Frontend
+- React.js
+- Tailwind CSS / Bootstrap
+- Axios
 
-📱 Fully Responsive & Mobile-Friendly UI
+### Backend
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
 
-🛠️ Tech Stack
-Frontend
+---
 
-React.js
+## 📂 Project Structure
 
-Tailwind CSS / Bootstrap
-
-Axios
-
-Backend
-
-Node.js
-
-Express.js
-
-MongoDB (Mongoose)
-
-📂 Project Structure
 BiteDash/
 │
-├── client/          # React frontend
-│   ├── src/
-│   └── public/
+├── client/ # React frontend
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── context/
+│ │ └── assets/
+│ └── public/
 │
-├── server/          # Node & Express backend
-│   ├── models/
-│   ├── routes/
-│   ├── controllers/
-│   └── config/
+├── server/ # Node.js backend
+│ ├── models/
+│ ├── routes/
+│ ├── controllers/
+│ ├── middleware/
+│ └── config/
 │
 └── README.md
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/your-username/BiteDash.git
 cd BiteDash
+
 2️⃣ Backend Setup
+
 cd server
 npm install
 npm start
 
-Create a .env file and add:
+Create a .env file inside the server folder:
 
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+JWT_SECRET=your_jwt_secret
+PORT=5000
+
 3️⃣ Frontend Setup
+
 cd client
 npm install
 npm run dev
+
 📸 Screenshots
 
-Add screenshots of your application here
-
+Add application screenshots here
 🎯 Key Highlights
 
-Built complete food ordering flow from scratch
+    Developed a complete food ordering system from scratch
 
-Designed REST APIs and handled database operations
+    Implemented secure authentication and REST APIs
 
-Implemented clean UI with modern CSS frameworks
+    Handled database operations using MongoDB
 
-Ensured seamless experience across devices
+    Designed a clean and responsive UI using modern CSS frameworks
 
 👨‍💻 Author
 
 Sarthak Ashok Shinde
-
 
 📜 License
 
