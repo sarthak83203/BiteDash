@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-//This i am making model in database not in frontend
+
 const UserSchema=new mongoose.Schema({
     name:{type:String,required:true},
     email:{type:String,required:true,unique:true},
