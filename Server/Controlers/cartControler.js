@@ -1,36 +1,46 @@
 import usermodel from "../models/userModel.js";
 
 //adding item to cart
-const addToCart= async(req,res)=>{
-    try{
-        let userdata=await usermodel.findById(req.user.id); //used in middle ware
-        let cartData=await userdata.cartData;
-        if(!cartData[req.body.itemId]){
-            cartData[req.body.itemId]=1;
 
-        }
-        else{
-            cartData[req.body.itemId]+=1;
-        }
-        await usermodel.findByIdAndUpdate(req.body.userId,{cartData});
-        
-        res.json({
-            success:true,
-            message:"Added to cart",
-        })
 
-    }
-    catch(err){
-        console.log(err);
-        res.json({
-            success:false,
-            message:"Error",
-        })
+const addToCart = async (req, res) => {
+  try {
+    const { itemId } = req.body;
 
+    if (!itemId) {
+      return res.status(400).json({
+        success: false,
+        message: "itemId is required",
+      });
     }
 
+    let userdata = await usermodel.findById(req.user.id);
 
-}
+    // Make sure cartData is an object
+    let cartData = userdata.cartData || {};
+
+    if (!cartData[itemId]) {
+      cartData[itemId] = 1;
+    } else {
+      cartData[itemId] += 1;
+    }
+
+    await usermodel.findByIdAndUpdate(req.user.id, { cartData });
+
+    res.json({
+      success: true,
+      message: "Added to cart",
+      cartData,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Error adding to cart",
+    });
+  }
+};
+
 
 //remove items from user cart
 
@@ -46,7 +56,7 @@ const removeFromCart=async (req,res)=>{
             delete cartData[req.body.itemId];
         }
         //Now updating database.....
-        await usermodel.findByIdAndUpdate(req.body.userId,{cartData});
+        await usermodel.findByIdAndUpdate(req.user.id,{cartData});
         res.json({
             success:true,
             message:"Removed from the cart successfully",

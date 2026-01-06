@@ -13,16 +13,23 @@ const StoreContextProvider=(props)=>{
         setFoodList(response.data.data);
     }
 
-    function addcart(itemid){ //If the user Add one item in card then this statment is executed..
-        if(!cartItem[itemid]){ //this is create new entry to our product..
-            setCartItem((prev)=>({...prev,[itemid]:1}))
+     async function addcart(itemId){ //If the user Add one item in card then this statment is executed..
+        if(!cartItem[itemId]){ //this is create new entry to our product..
+            setCartItem((prev)=>({...prev,[itemId]:1}))
         }else{ //if it is already one then set this...
-            setCartItem((prev)=>({...prev,[itemid]:prev[itemid]+1}));
+            setCartItem((prev)=>({...prev,[itemId]:prev[itemId]+1}));
+        }
+        if(token){//when we loged in we will have the token ..
+            //whatever item that is added in cart that will be updated in stack
+            await axios.post(url+"/api/cart/add",{itemId},{headers:{token}});
         }
     }
 
-    function removeitemid(itemid){
-        setCartItem((prev)=>({...prev,[itemid]:prev[itemid]-1}));
+    async function removeitemid(itemId){
+        setCartItem((prev)=>({...prev,[itemId]:prev[itemId]-1}));
+        if(token){
+            await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}});
+        }
 
     }
 
@@ -47,12 +54,22 @@ useEffect(()=>{
         await fetchFoodList();
          if(localStorage.getItem("token")){
         setToken(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token"));
     }
     }
     
     loaddata();
 
-},[])
+},[]) 
+
+
+//if we refresh then it will remain as it is..
+const loadCartData=async (token)=>{
+    const response=await axios.post(url+"/api/cart/show",{},{headers:{token}});
+    setCartItem(response.data.cartData);
+
+
+}
 
   //Context API allows you to use all this components in  other Files....
     const contextValue={
