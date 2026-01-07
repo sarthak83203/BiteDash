@@ -6,6 +6,7 @@ import { listFood } from "./Controlers/foodcontroler.js";
 import userRouter from "./routes/userRoute.js";
 import "dotenv/config"
 import cartRouter from "./routes/cartRoute.js";
+import orderRouter from "./routes/orderRoute.js";
 
 //App Config
 const app=express();
@@ -25,6 +26,7 @@ app.use("/images",express.static("uploads")); //Mounted this upload folder at th
 app.use("/api/user",userRouter);
 
 app.use("/api/cart",cartRouter);
+app.use("/api/order",orderRouter);
 
 app.listen(port,()=>{
      console.log(`Server started at ${port}`);
