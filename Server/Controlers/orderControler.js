@@ -9,8 +9,8 @@ const stripe=new Stripe(process.env.STRIPE_SECRET_KEY); //Created an Stripe Supp
 const placeOrder = async (req,res)=>{
     try{
         const neworder=new orderModel({
-            userId:req.user.id, //when userid will generate token with userId...
-            
+            userId:req.user.id, //when userid will generate token with userId..
+
         })
 
     }catch(err){
