@@ -28,11 +28,10 @@ const placeOrder = async (req,res)=>{
                 product_data:{
                     name:item.name
                 },
-                unit_amount:{
-                    amount:item.price * 100 * 80 //If multiple by 100 comes in "$" then by 80 come in "rupee"
-                },
-                quantity:item.quantity,
-            }
+                 unit_amount: Math.round(item.price * 100)
+                
+            },
+            quantity:item.quantity,
 
         }))
 
@@ -45,9 +44,9 @@ const placeOrder = async (req,res)=>{
                     name:"Delivery Charges"
 
                 },
-                unit_amount: 2 * 100 * 80,
+                unit_amount: 2 * 100,
             },
-            quantity:1,
+            quantity:2,
 
         })
         //Now checkout session will work..
@@ -56,7 +55,7 @@ const placeOrder = async (req,res)=>{
             mode:"payment",
             //if payment is success then go to success
             success_url:`${frontend_url}/verify?success=true&orderId=${neworder._id}`,
-            cancel_url_url:`${frontend_url}/verify?success=false&orderId=${neworder._id}`
+            cancel_url:`${frontend_url}/verify?success=false&orderId=${neworder._id}`
 
         })
         res.json({
