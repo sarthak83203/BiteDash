@@ -4,10 +4,43 @@ import Stripe from "stripe";
 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY); //Created an Stripe Support....
 
+const verifyOrder= async (req,res)=>{
+    //to verify order payment
+    const {orderId,success}=req.query;
+    try{
+        if(success==="true"){
+            await orderModel.findByIdAndUpdate(orderId,{payment:true});
+            res.json({
+                success:true,
+                message:"Amount Paid SuccessFully",
+            })
+        }
+        //If the data is not found it will go to database it should be deleted....
+        else{
+            await orderModel.findByIdAndDelete(orderId);
+            res.json({
+                success:false,
+                message:"Not paid",
+            })
+        }
+
+    }
+    catch(err){
+        console.log(err);
+        res.json({
+            success:false,
+            message:err.message,
+        })
+
+    }
+
+
+}
+
 
 //placing order...
 const placeOrder = async (req,res)=>{
-    const frontend_url="http://localhost:5173/";
+    const frontend_url="http://localhost:5173";
     try{
         const neworder=new orderModel({
             userId:req.user.id, //when userid will generate token with userId..
@@ -18,7 +51,7 @@ const placeOrder = async (req,res)=>{
 
         })
         await neworder.save();
-        await usermodel.findByIdAndUpdate(req.user.body,{cart:{}}); //Now getting update of user..
+        await usermodel.findByIdAndUpdate(req.user.id,{cart:{}}); //Now getting update of user..
 
         //adding logic which will creat payment link using stripe...
 
@@ -49,7 +82,7 @@ const placeOrder = async (req,res)=>{
             quantity:2,
 
         })
-        //Now checkout session will work..
+        //Now checkout session will work.. important part...
         const session=await stripe.checkout.sessions.create({
             line_items:line_items,
             mode:"payment",
@@ -63,8 +96,6 @@ const placeOrder = async (req,res)=>{
             session_url:session.url,
 
         })
-
-
 
 
     }catch(err){
@@ -81,4 +112,4 @@ const placeOrder = async (req,res)=>{
 
 
 }
-export {placeOrder};
+export {placeOrder,verifyOrder};
