@@ -4,11 +4,33 @@ import Stripe from "stripe";
 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY); //Created an Stripe Support....
 
+ //to send the users order using api's
+const usersOrders=async (req,res)=>{
+    try{
+        const orders=await orderModel.find({userId:req.user.id}); //this coming from userId..
+        res.json({
+            success:true,
+            data:orders,
+        })
+
+    }
+    catch(err){
+        console.log(err);
+        res.json({
+            success:false,
+            message:err.message,
+        })
+    }
+
+
+
+}
+
 const verifyOrder= async (req,res)=>{
     //to verify order payment
-    const {orderId,success}=req.query;
+    const {orderId,success}=req.body;
     try{
-        if(success==="true"){
+        if(success===true){
             await orderModel.findByIdAndUpdate(orderId,{payment:true});
             res.json({
                 success:true,
@@ -42,6 +64,7 @@ const verifyOrder= async (req,res)=>{
 const placeOrder = async (req,res)=>{
     const frontend_url="http://localhost:5173";
     try{
+        console.log("PLACE ORDER BODY ", req.body);
         const neworder=new orderModel({
             userId:req.user.id, //when userid will generate token with userId..
             items:req.body.items,
@@ -51,6 +74,7 @@ const placeOrder = async (req,res)=>{
 
         })
         await neworder.save();
+        console.log("Order saved:", neworder._id);
         await usermodel.findByIdAndUpdate(req.user.id,{cart:{}}); //Now getting update of user..
 
         //adding logic which will creat payment link using stripe...
@@ -112,4 +136,4 @@ const placeOrder = async (req,res)=>{
 
 
 }
-export {placeOrder,verifyOrder};
+export {placeOrder,verifyOrder,usersOrders};

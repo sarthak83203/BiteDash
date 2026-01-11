@@ -11,6 +11,7 @@ import StoreContextProvider from './context/StoreContext.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import LoginPopup from './components/LoginPopup/LoginPopup.jsx'
 import Verify from './pages/verify/verify.jsx'
+import MyOrders from './pages/MyOrders/MyOrders.jsx'
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/order' element={<PlaceOrder/>}/>
         <Route path='/verify' element={<Verify/>}/>
+        <Route path="/myorders" element={<MyOrders/>}/>
+       
       </Routes>
 
     </div>
