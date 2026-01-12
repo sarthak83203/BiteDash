@@ -33,7 +33,12 @@ const navigate = useNavigate();
     }
 
     useEffect(()=>{
-        console.log(data);
+        if(!token){
+            navigate("/cart");
+        }else if(getTotalCartAmount()===0){
+            navigate('/cart');
+
+        }
 
 
     },[data])

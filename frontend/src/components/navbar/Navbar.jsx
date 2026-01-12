@@ -2,7 +2,7 @@ import { assets } from "../../assets/assets";
 import "./Navbar.css"
 import {useContext, useState} from "react";
 import deli from "../../assets/deli.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; //from react router dom
 import { StoreContext } from "../../context/StoreContext";
 
 export default function Navbar({setShowLogin}){
@@ -40,7 +40,7 @@ export default function Navbar({setShowLogin}){
             <div className="navbar-profile">
                 <img src={assets.profile_icon} alt="something"/>
                 <ul className="nav-profile-dropdown">
-                    <li><img src={assets.bag_icon} alt="bag"/><p>Orders</p></li>
+                    <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon} alt="bag"/><p>Orders</p></li>
                     <hr/>
                     <li onClick={logout}><img src={assets.logout_icon} alt="logout"/><p>Logout</p></li>
 
