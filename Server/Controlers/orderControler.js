@@ -62,7 +62,7 @@ const verifyOrder= async (req,res)=>{
 
 //placing order...
 const placeOrder = async (req,res)=>{
-    const frontend_url="http://localhost:5173";
+    const frontend_url="http://localhost:5174";
     try{
         console.log("PLACE ORDER BODY ", req.body);
         const neworder=new orderModel({
@@ -136,4 +136,49 @@ const placeOrder = async (req,res)=>{
 
 
 }
-export {placeOrder,verifyOrder,usersOrders};
+
+//Listing order for admin pannel
+const listOrder=async(req,res)=>{
+    try{
+        const order=await orderModel.find({});  //Get all the order data in this variable...
+        res.json({
+            success:true,
+            data:order, //Getting all the order list in this data......
+        })
+
+    }catch(err){
+        console.log(err);
+        res.json({
+            success:false,
+            message:"Error",
+        })
+
+    }
+
+
+}
+//api for update of order status....
+const updateStatus=async(req,res)=>{
+    try{
+        await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status}); //{find,and what to update}
+        res.json({
+            success:true,
+            message:"Status updated"
+        })
+
+    }catch(err){
+        console.log(err);
+        res.json({
+            success:false,
+            message:"Error",
+        })
+
+    }
+
+
+}
+
+
+
+
+export {placeOrder,verifyOrder,usersOrders,listOrder,updateStatus};

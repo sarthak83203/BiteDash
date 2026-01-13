@@ -19,7 +19,7 @@ export default function MyOrders(){
 
     }
     
-     //Whenenever the website is being loaded we have to keep tracking..
+     //Whenenever the website is being loaded we have to keep tracking....
       
      useEffect(()=>{
         if(token){
@@ -53,7 +53,8 @@ return (
                         <p>${order.amount}.00</p>
                         <p>Items:{order.items.length}</p>
                         <p><span>&#x25cf;</span>{order.status}</p>
-                        <button>Track order</button>
+                        {/* It should be track again and again.. */}
+                        <button onClick={fetchOrders}>Track order</button> 
                     </div>
 
                 );
