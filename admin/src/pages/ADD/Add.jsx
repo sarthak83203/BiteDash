@@ -75,7 +75,7 @@ export default function Add(){
                             <option value="Salad">Salad</option>
                             <option value="Rolls">Rolls</option>
                             <option value="Deserts">Deserts</option>
-                            <option value="Sandwitch">Sandwitch</option>
+                            <option value="Sandwich">Sandwich</option>
                             <option value="Cake">Cake</option>
                             <option value="Pure Veg">Pure Veg</option>
                             <option value="Pasta">Pasta</option>
@@ -84,7 +84,7 @@ export default function Add(){
                     </div>
                     <div className="add-price flex-col">
                         <p>Product price</p>
-                        <input onChange={Onchange} value={data.price} type="number" name="price" placeholder="$20" min="5" max="100" />
+                        <input onChange={Onchange} value={data.price} type="number" name="price" placeholder="₹150" min="90" max="10000" />
                     </div>
 
                 </div>

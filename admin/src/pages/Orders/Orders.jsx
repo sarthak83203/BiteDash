@@ -65,7 +65,7 @@ export default function Orders(){
                                 ))}
                             </p>
                         
-                            <p>Amount: ${order.amount}</p> 
+                            <p>Amount: ₹{order.amount}</p> 
                             
                             <p>Status: {order.payment ? "Paid" : "Pending"}</p>
                             <p className="order-item-name">{order.address.firstName+ " "+order.address.lastName}</p>
