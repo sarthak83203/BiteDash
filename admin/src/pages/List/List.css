@@ -1,40 +1,105 @@
-.list-table-format{
+.list {
+    width: 90%;
+    margin: 50px auto;
+    font-family: 'Arial', sans-serif;
+    color: #555;
+}
+
+.list p {
+    font-weight: 500;
+}
+
+.list-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Table Header */
+.list-table-format.title {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
+    padding: 12px 15px;
+    font-weight: 700;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Table Rows */
+.list-table-format {
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
     align-items: center;
     gap: 10px;
     padding: 12px 15px;
-    border: 1px solid black;
-    font-size: 13px;
-
-}
-.list-table.format.title{
-    background-color: #f9f9f9f9;
-
-}
-.list-table-format img{
-    width: 50%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #fff;
 }
 
-@media(max-width:600px){
-    .list-table-format{
+.list-table-format:hover {
+    background-color: #fff5f0;
+    transform: translateY(-2px);
+}
+
+/* Images */
+.list-table-format img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Category & Price */
+.category {
+    font-weight: 500;
+    color: #888;
+}
+
+.price {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Delete button */
+.X {
+    cursor: pointer;
+    color: white;
+    background-color: tomato;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.X:hover {
+    background-color: #e64a19;
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media(max-width: 600px) {
+    .list-table-format,
+    .list-table-format.title {
         grid-template-columns: 1fr 3fr 1fr;
         gap: 15px;
-
     }
 
-    .list-table-format .category,
-  .list-table-format .action {
-    display: none;
-  }
+    .category,
+    .price,
+    .X {
+        display: none;
+    }
 
-  .list-table-format.title {
-    display: none;
-  }
+    .list-table-format img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .list-table-format.title {
+        display: none;
+    }
 }
-.X{
-    cursor: pointer;
-}
-
-
-

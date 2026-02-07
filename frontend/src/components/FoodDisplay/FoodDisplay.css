@@ -1,19 +1,68 @@
+/* ===== Wrapper ===== */
 .food-display {
-  margin-top: 30px;
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: 20px;
+    margin-top: 70px;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
 }
 
-.food-display h2{
-    font-size: max(2vw,24px);
-    font-weight: 600;
-
+/* ===== Heading ===== */
+.food-display h2 {
+    font-size: clamp(22px, 2.2vw, 32px);
+    font-weight: 700;
+    color: #262626;
+    margin-bottom: 35px;
+    position: relative;
 }
+
+/* decorative underline */
+.food-display h2::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    background: tomato;
+    left: 0;
+    bottom: -10px;
+    border-radius: 2px;
+}
+
+/* ===== Grid ===== */
 .food-display-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-content: center;
-  gap: 30px;
-  row-gap: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    row-gap: 55px;
+}
+
+/* ===== Animation for items ===== */
+.food-display-list > * {
+    animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .food-display {
+        margin-top: 50px;
+    }
+
+    .food-display h2 {
+        font-size: 22px;
+    }
+
+    .food-display-list {
+        gap: 24px;
+        row-gap: 40px;
+    }
 }

@@ -5,7 +5,7 @@ export default function Header(){
             <div className="header-contents">
                 <h2 className="h2">Best Food of World</h2>
                 <p>Choose from the Available Foods which are Available for Todays Itself</p>
-                <button>View Menu</button>
+               
             </div>
 
         </div>

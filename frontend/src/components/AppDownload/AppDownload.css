@@ -1,18 +1,68 @@
-.app-download{
-    margin: auto;
-    margin-top: 100px;
-    font-size: max(3vw,20px);
+/* ===== App Download Wrapper ===== */
+.app-download {
+    margin: 120px auto;
+    padding: 60px 20px;
+    max-width: 900px;
     text-align: center;
-    font-weight: 500;
+    font-size: max(2.8vw, 22px);
+    font-weight: 600;
+    color: #262626;
+
+    /* premium look */
+    background: linear-gradient(
+        135deg,
+        rgba(255,99,71,0.12),
+        rgba(255,200,180,0.2)
+    );
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
-.app-dowload-platform{
+
+/* ===== Text ===== */
+.app-download p {
+    line-height: 1.4;
+}
+
+/* ===== Store Buttons ===== */
+.app-dowload-platform {
     display: flex;
     justify-content: center;
-    gap: max(2vw,10px);
-    margin-top: 40px;
-
+    gap: max(2vw, 14px);
+    margin-top: 45px;
+    flex-wrap: wrap;
 }
-.app-dowload-platform img:hover{
-    transform: scale(1.1);
-    
+
+.app-dowload-platform img {
+    width: 180px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.15));
+}
+
+/* hover animation */
+.app-dowload-platform img:hover {
+    transform: translateY(-6px) scale(1.08);
+    filter: drop-shadow(0 14px 25px rgba(255,99,71,0.35));
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .app-download {
+        font-size: 20px;
+        padding: 45px 15px;
+    }
+
+    .app-dowload-platform img {
+        width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-download {
+        font-size: 18px;
+    }
+
+    .app-dowload-platform img {
+        width: 135px;
+    }
 }

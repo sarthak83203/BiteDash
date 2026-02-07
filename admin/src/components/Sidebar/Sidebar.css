@@ -1,22 +1,25 @@
 /* SIDEBAR MAIN CONTAINER */
 .side-bar {
-    width: 9%;
+    width: 12%;
+    min-width: 80px;
     min-height: 100vh;
-    border-right: 1.5px solid black;   /* vertical line */
-    
+    border-right: 1px solid #ddd;
     display: flex;
     flex-direction: column;
     padding-top: 20px;
-    background-color: white;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    font-family: 'Arial', sans-serif;
+    transition: width 0.3s;
 }
 
 /* SIDEBAR OPTIONS WRAPPER */
 .sidebar-options {
-    padding-top: 40px;
-    padding-left: 10px;   /* small padding for better alignment */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    padding-left: 10px;
+    margin-top: 30px;
 }
 
 /* EACH OPTION BOX */
@@ -24,38 +27,53 @@
     display: flex;
     align-items: center;
     gap: 12px;
-
-    border: 1px solid #a9a9a9;
-    padding: 8px 10px;
-
-    border-right: 0;
-    border-radius: 3px 0 0 3px;
-
+    padding: 10px 12px;
+    border-radius: 8px 0 0 8px;
     cursor: pointer;
-    background: white;
+    transition: all 0.3s ease;
+    color: #555;
+    text-decoration: none;
+    background-color: #fff;
+    font-weight: 500;
 }
 
-/* OPTION ICON */
 .sidebar-option img {
-    height: 25px;
+    height: 28px;
+    transition: transform 0.2s;
 }
 
-.sidebar-option.active{
+.sidebar-option:hover {
     background-color: #fff0ed;
-    border: tomato;
+    transform: translateX(5px);
 }
+
+.sidebar-option.active {
+    background-color: #ffe1e0;
+    color: tomato;
+}
+
+.sidebar-option.active img {
+    filter: brightness(0) saturate(100%) invert(28%) sepia(92%) saturate(5830%) hue-rotate(357deg) brightness(96%) contrast(105%);
+}
+
 /* RESPONSIVE — HIDE TEXT BELOW 900px */
 @media (max-width: 900px) {
     .sidebar-option p {
         display: none;
     }
-    
+
     .side-bar {
-        width: 60px;   /* sidebar stays small on mobile */
+        width: 60px;
+        padding-left: 0;
     }
 
     .sidebar-option {
-        justify-content: center;   /* center icons when text hides */
-        padding: 10px;
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .sidebar-option:hover {
+        transform: translateX(0);
+        background-color: #fff0ed;
     }
 }
