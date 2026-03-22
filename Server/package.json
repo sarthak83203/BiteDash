@@ -4,6 +4,8 @@
   "main": "index.js",
   "type":"module",
   "scripts": {
+    "start":"nodemon index.js",
+    "dev":"nodemon index.js"
     
   },
   "author": "Sarthak Shinde",
