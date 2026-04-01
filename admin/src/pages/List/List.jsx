@@ -50,7 +50,7 @@ export default function List(){
                                 <img src={"http://localhost:4000/images/"+item.image}/>
                                 <p>{item.name}</p>
                                 <p className="category">{item.category}</p>
-                                <p className="price">${item.price}</p>
+                                <p className="price">₹{item.price}</p>
                                 <p  onClick={()=>removefood(item._id)}   className="X">X</p>
                         </div>
                     );
